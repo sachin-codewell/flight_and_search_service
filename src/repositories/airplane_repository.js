@@ -1,13 +1,13 @@
-const { airplane } = require('../models/index');
+const { Airplane } = require('../models/index');
 
 class AirplaneRepository {
   
-  async createAirplane(newAirplaneDetails) {
+  async createAirplane(newAirplaneData) {
     try {
-        console.log(newAirplaneDetails);
-      const data = await airplane.create({
-        modelName: newAirplaneDetails.modelName,
-        capacity: newAirplaneDetails.capacity,
+      const data = await Airplane.create({
+        id: newAirplaneData.id,
+        modelName: newAirplaneData.modelName,
+        capacity: newAirplaneData.capacity
       });
       return data;
     } catch (error) {

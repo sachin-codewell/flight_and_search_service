@@ -4,8 +4,8 @@ const airplaneService = new AirplaneService();
 
 async function createAirplane(req,res) {
     try {
-        console.log('body',req.body);
-        const response = await airplaneService.createAirplane(req.body);
+        const newAirplaneData = req.body;
+        const response = await airplaneService.createAirplane(newAirplaneData);
         return res.status(201).json({
             success: true,
             data: response,

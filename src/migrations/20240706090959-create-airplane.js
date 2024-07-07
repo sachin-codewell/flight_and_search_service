@@ -5,9 +5,8 @@ module.exports = {
     await queryInterface.createTable('airplanes', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       modelName: {
         allowNull: false,

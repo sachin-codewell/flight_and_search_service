@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require('uuid');
+
 const { AirplaneRepository } = require("../repositories/index");
 
 class AirplaneService {
@@ -6,11 +8,10 @@ class AirplaneService {
     this.airplaneRepository = new AirplaneRepository();
   }
 
-  async createAirplane(newAirplaneDetails) {
+  async createAirplane(newAirplaneData) {
     try {
-      const data = await this.airplaneRepository.createAirplane(
-        newAirplaneDetails
-      );
+      newAirplaneData = {id:uuidv4(), ...newAirplaneData} ; 
+      const data = await this.airplaneRepository.createAirplane(newAirplaneData);
       return data;
     } catch (error) {
       console.log("something went wrong in airplane servie: createAirplane");
