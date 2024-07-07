@@ -13,11 +13,23 @@ class AirplaneService {
       newAirplaneData = {id:uuidv4(), ...newAirplaneData} ; 
       const data = await this.airplaneRepository.createAirplane(newAirplaneData);
       return data;
-    } catch (error) {
+    } 
+    catch (error) {
       console.log("something went wrong in airplane servie: createAirplane");
       throw error;
     }
   }
+
+  async deleteAirplane(airplaneId) {
+    try {
+        const data = await this.airplaneRepository.deleteAirplane(airplaneId);
+        return data;
+    } catch (error) {
+        console.log("something went wrong in airplane servie: deleteAirplane");
+        throw error;    
+    }
+  }
+
 }
 
 module.exports = AirplaneService;

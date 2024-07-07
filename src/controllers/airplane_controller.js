@@ -5,10 +5,10 @@ const airplaneService = new AirplaneService();
 async function createAirplane(req,res) {
     try {
         const newAirplaneData = req.body;
-        const response = await airplaneService.createAirplane(newAirplaneData);
+        const result = await airplaneService.createAirplane(newAirplaneData);
         return res.status(201).json({
             success: true,
-            data: response,
+            data: result,
             error: {},
             message: "airplane created sccessfully"
         })
@@ -22,6 +22,27 @@ async function createAirplane(req,res) {
     }
 }
 
+async function deleteAirplane(req,res) {
+    try {
+        const result = await airplaneService.deleteAirplane(req.params.id);
+        return res.status(200).json({
+            success: true,
+            data: result,
+            error: {},
+            message: "airplane deleted sccessfully"
+        })
+    } 
+    catch (error) {
+        return res.status(400).json({
+            success: false,
+            data: {} ,
+            error: {error},
+            message: "airplane not found sccessfully"
+        }) 
+    }
+}
+
 module.exports = {
-    createAirplane
+    createAirplane,
+    deleteAirplane
 };

@@ -4,6 +4,7 @@ const { AirplaneController } = require('../../controllers/index');
 
 const router = express.Router();
 
-router.post('/createplane', AirplaneController.createAirplane);
+router.post('/create', AirplaneController.createAirplane);
+router.delete('/delete/:id', AirplaneController.deleteAirplane);
 
 module.exports = router;
