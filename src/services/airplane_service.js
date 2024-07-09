@@ -30,6 +30,18 @@ class AirplaneService {
     }
   }
 
+  async getAirplanes(filter) {
+    try {
+        const data = await this.airplaneRepository.getAirplanes(filter);
+        return data;
+    } catch (error) {
+        console.log("something went worng in airplane service: getAirplanes");
+        throw error;
+    }
+  }
+
+  
+
 }
 
 module.exports = AirplaneService;

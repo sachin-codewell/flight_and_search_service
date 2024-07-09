@@ -1,3 +1,5 @@
+const { Op } = require('sequelize')
+
 const { Airplane } = require("../models/index");
 
 class AirplaneRepository {
@@ -35,7 +37,28 @@ class AirplaneRepository {
 
   async getAirplaneByID() {}
 
-  async getAirplanes() {}
+  async getAirplanes(filter) {
+    try {
+        let data;
+        if(filter) {
+            data = await Airplane.findAll({
+                where: {
+                    modelName: {
+                        [Op.like]: `%${filter.modelName}%`
+                    }
+                }
+            })
+        }
+        else {
+            data = await Airplane.findAll();
+        }
+        return data;
+    } 
+    catch (error) {
+        console.log("something went worng in airplane repo: getAirplanes",error);
+        throw error;
+    }
+  }
 }
 
 module.exports = AirplaneRepository;

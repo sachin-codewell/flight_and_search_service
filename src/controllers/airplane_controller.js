@@ -42,7 +42,30 @@ async function deleteAirplane(req,res) {
     }
 }
 
+async function getAirplanes(req,res) {
+    try {
+        const filterdata = req.query;
+        console.log(filterdata);
+        const result = await airplaneService.getAirplanes(filterdata)
+        return res.status(200).json({
+            success: true,
+            data: result,
+            error: {},
+            message: "All Airplanes fetched successfully"
+        })
+    } 
+    catch (error) {
+        return res.status(404).json({
+            success: false,
+            data: {} ,
+            error: error,
+            message: "Unable to fetch Airplanes"
+        }) 
+    }
+}
+
 module.exports = {
     createAirplane,
-    deleteAirplane
+    deleteAirplane,
+    getAirplanes
 };
