@@ -6,6 +6,7 @@ const cityService = new CityService(cityRepository);
 
 async function createCity(req,res) {
     try { 
+        let newCityData = req.body;
        const result = await cityService.createCity(newCityData);
        return res.status(201).json({
         success: true,
@@ -25,6 +26,27 @@ async function createCity(req,res) {
     }
 }
 
+async function deleteCity(req,res) {
+    try {
+        const result = await cityService.deleteCity(req.params.id);
+        return res.status(200).json({
+            success: true,
+            data: result,
+            error: {},
+            message: "city deleted sccessfully"
+        })
+    } 
+    catch (error) {
+        return res.status(400).json({
+            success: false,
+            data: {} ,
+            error: {error},
+            message: "city not deleted"
+        }) 
+    }
+}
+
 module.exports = {
-    createCity
+    createCity,
+    deleteCity
 }

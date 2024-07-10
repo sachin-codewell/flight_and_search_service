@@ -25,6 +25,7 @@ class AirplaneRepository {
           id: airplaneId,
         },
       });
+      console.log('deleted data',data);
       return data;
     } 
     catch (error) {

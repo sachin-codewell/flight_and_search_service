@@ -14,6 +14,21 @@ class CityRepository {
         }
     }
 
+    async deleteCity(cityId) {
+        try {
+          const data = await City.destroy({
+            where: {
+              id: cityId,
+            },
+          });
+          return data;
+        } 
+        catch (error) {
+          console.log("something went worng in city repo: delete",error);
+          throw error;
+        }
+      }
+
 }
 
 module.exports = CityRepository;
