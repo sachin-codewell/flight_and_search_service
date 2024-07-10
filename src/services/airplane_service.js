@@ -4,10 +4,8 @@ const { AirplaneRepository } = require("../repositories/index");
 
 class AirplaneService {
 
-  constructor(AirplaneRepository) {
-    //this.airplaneRepository = new AirplaneRepository();
-    this.airplaneRepository = AirplaneRepository;
-
+  constructor() {
+    this.airplaneRepository = new AirplaneRepository();
   }
 
   async createAirplane(newAirplaneData) {
