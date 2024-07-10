@@ -9,10 +9,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       name: {
-        type: Sequelize.STRING
-      },
-      pincode: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
