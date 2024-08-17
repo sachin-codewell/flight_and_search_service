@@ -42,6 +42,47 @@ async function deleteAirplane(req,res) {
     }
 }
 
+async function updateAirplane(req,res) {
+    try {
+        const result = await airplaneService.getAirplanes(req.body)
+        return res.status(200).json({
+            success: true,
+            data: result,
+            error: {},
+            message: "Updated airplanes details"
+        })
+    } 
+    catch (error) {
+        return res.status(404).json({
+            success: false,
+            data: {} ,
+            error: error,
+            message: "Something went wrong"
+        }) 
+    }
+  }
+
+
+async function getAirplaneByID(req,res) {
+    try {
+        const result = await airplaneService.getAirplanes(req.params.id)
+        return res.status(200).json({
+            success: true,
+            data: result,
+            error: {},
+            message: "Airplanes with specified id fetched successfully"
+        })
+    } 
+    catch (error) {
+        return res.status(404).json({
+            success: false,
+            data: {} ,
+            error: error,
+            message: "Airplane with specified id not exist"
+        }) 
+    }
+  }
+
 async function getAirplanes(req,res) {
     try {
         const filterdata = req.query;
@@ -62,10 +103,12 @@ async function getAirplanes(req,res) {
             message: "Unable to fetch Airplanes"
         }) 
     }
-}
+}  
 
 module.exports = {
     createAirplane,
     deleteAirplane,
-    getAirplanes
+    getAirplanes,
+    getAirplaneByID,
+    updateAirplane
 };

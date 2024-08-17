@@ -30,6 +30,29 @@ class AirplaneService {
     }
   }
 
+  async updateAirplane(airplaneData) {
+    try {
+      const {airplaneId, ...updatedAirplaneData} = airplaneData;
+      const airlane = await this.airplaneRepository.updateAirplane(airplaneId,updatedAirplaneData);
+      return airlane;
+    } 
+    catch (error) {
+      console.log("something went worng in airplane service: updateAirplane");
+      throw error;  
+    }
+  }
+
+  async getAirplaneByID(airplaneId) {
+    try {
+      const airlane = await this.airplaneRepository.getAirplaneByID(airplaneId)
+      return airlane;
+    } 
+    catch (error) {
+      console.log("something went worng in airplane service: getAirplaneById");
+      throw error;  
+    }
+  }
+
   async getAirplanes(filter) {
     try {
         const data = await this.airplaneRepository.getAirplanes(filter);

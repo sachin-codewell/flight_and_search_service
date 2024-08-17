@@ -34,9 +34,31 @@ class AirplaneRepository {
     }
   }
 
-  async updateAirplane() {}
+  async updateAirplane(airplaneId,updatedAirplaneData) {
+    try {
+      const airlane = await Airplane.update(updatedAirplaneData,{
+        where:{
+          id: airplaneId
+        }
+      });
+      return airlane;
+    } 
+    catch (error) {
+      console.log("something went worng in airplane repo: updateAirplane");
+      throw error;  
+    }
+  }
 
-  async getAirplaneByID() {}
+  async getAirplaneByID(airplaneId) {
+    try {
+      const airlane = await Airplane.findByPk(airplaneId);
+      return airlane;
+    } 
+    catch (error) {
+      console.log("something went worng in airplane repo: getAirplaneById");
+      throw error;  
+    }
+  }
 
   async getAirplanes(filter) {
     try {
