@@ -82,6 +82,7 @@ class AirplaneRepository {
         throw error;
     }
   }
+  
 }
 
 module.exports = AirplaneRepository;

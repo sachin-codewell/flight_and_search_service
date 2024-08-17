@@ -46,7 +46,73 @@ async function deleteCity(req,res) {
     }
 }
 
+async function updateCity(req,res) {
+    try {
+        const result = await cityService.updateCity(req.body);
+        return res.status(200).json({
+            success: true,
+            data: result,
+            error: {},
+            message: "Updated city details"
+        })
+    } 
+    catch (error) {
+        return res.status(404).json({
+            success: false,
+            data: {} ,
+            error: error,
+            message: "Something went wrong"
+        }) 
+    }
+  }
+
+
+async function getCityByID(req,res) {
+    try {
+        const result = await cityService.getCityByID(req.params.id)
+        return res.status(200).json({
+            success: true,
+            data: result,
+            error: {},
+            message: "City with specified id fetched successfully"
+        })
+    } 
+    catch (error) {
+        return res.status(404).json({
+            success: false,
+            data: {} ,
+            error: error,
+            message: "City with specified id not exist"
+        }) 
+    }
+  }
+
+async function getCities(req,res) {
+    try {
+        const filterdata = req.query;
+        console.log(filterdata);
+        const result = await cityService.getCities(filterdata);
+        return res.status(200).json({
+            success: true,
+            data: result,
+            error: {},
+            message: "All Cities fetched successfully"
+        })
+    } 
+    catch (error) {
+        return res.status(404).json({
+            success: false,
+            data: {} ,
+            error: error,
+            message: "Unable to fetch Cities"
+        }) 
+    }
+} 
+
 module.exports = {
     createCity,
-    deleteCity
+    deleteCity,
+    updateCity,
+    getCities,
+    getCityByID
 }
