@@ -58,8 +58,9 @@ class CityRepository {
   async getCities(filter) {
     try {
         let data;
-        if(filter.keys().length>0) {
+        if(Object.keys(filter).length>0) {
             data = await City.findAll({
+              
                 where: {
                     name: {
                         [Op.like]: `%${filter.name}%`

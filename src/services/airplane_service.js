@@ -33,8 +33,8 @@ class AirplaneService {
   async updateAirplane(airplaneData) {
     try {
       const {airplaneId, ...updatedAirplaneData} = airplaneData;
-      const airlane = await this.airplaneRepository.updateAirplane(airplaneId,updatedAirplaneData);
-      return airlane;
+      const airplane = await this.airplaneRepository.updateAirplane(airplaneId,updatedAirplaneData);
+      return airplane;
     } 
     catch (error) {
       console.log("something went worng in airplane service: updateAirplane");
@@ -44,8 +44,8 @@ class AirplaneService {
 
   async getAirplaneByID(airplaneId) {
     try {
-      const airlane = await this.airplaneRepository.getAirplaneByID(airplaneId)
-      return airlane;
+      const airplane = await this.airplaneRepository.getAirplaneByID(airplaneId)
+      return airplane;
     } 
     catch (error) {
       console.log("something went worng in airplane service: getAirplaneById");
@@ -53,10 +53,10 @@ class AirplaneService {
     }
   }
 
-  async getAirplanes(filter) {
+  async getAirplanes(filterData) {
     try {
-        const data = await this.airplaneRepository.getAirplanes(filter);
-        return data;
+        const airplanes = await this.airplaneRepository.getAirplanes(filterData);
+        return airplanes;
     } catch (error) {
         console.log("something went worng in airplane service: getAirplanes");
         throw error;

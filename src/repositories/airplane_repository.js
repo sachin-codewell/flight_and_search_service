@@ -1,4 +1,7 @@
 const { Op } = require('sequelize')
+const { QueryTypes } = require('sequelize');
+
+
 
 const { Airplane } = require("../models/index");
 
@@ -51,8 +54,13 @@ class AirplaneRepository {
 
   async getAirplaneByID(airplaneId) {
     try {
-      const airlane = await Airplane.findByPk(airplaneId);
-      return airlane;
+      const airplane = await Airplane.findAll({
+        where: {
+          id: airplaneId
+        }
+      });
+      return airplane; 
+     
     } 
     catch (error) {
       console.log("something went worng in airplane repo: getAirplaneById");
@@ -62,9 +70,9 @@ class AirplaneRepository {
 
   async getAirplanes(filter) {
     try {
-        let data;
-        if(filter) {
-            data = await Airplane.findAll({
+        let airplanes;
+        if(Object.keys(filter).length>0) {
+            airplanes = await Airplane.findAll({
                 where: {
                     modelName: {
                         [Op.like]: `%${filter.modelName}%`
@@ -73,9 +81,9 @@ class AirplaneRepository {
             })
         }
         else {
-            data = await Airplane.findAll();
+            airplanes = await Airplane.findAll();
         }
-        return data;
+        return airplanes;
     } 
     catch (error) {
         console.log("something went worng in airplane repo: getAirplanes",error);
@@ -83,6 +91,7 @@ class AirplaneRepository {
     }
   }
   
+
 }
 
 module.exports = AirplaneRepository;

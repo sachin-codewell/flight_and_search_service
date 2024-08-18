@@ -65,7 +65,7 @@ async function updateAirplane(req,res) {
 
 async function getAirplaneByID(req,res) {
     try {
-        const result = await airplaneService.getAirplanes(req.params.id)
+        const result = await airplaneService.getAirplaneByID(req.params.id)
         return res.status(200).json({
             success: true,
             data: result,
