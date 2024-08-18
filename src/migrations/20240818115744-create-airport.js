@@ -10,15 +10,20 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
       address: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
       cityId: {
         type: Sequelize.STRING,
-        allowNull: false,
+        references: {
+          model: "Cities",
+          key: "id",
+          as: 'cityId'
+        },
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
