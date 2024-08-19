@@ -54,13 +54,8 @@ class AirplaneRepository {
 
   async getAirplaneByID(airplaneId) {
     try {
-      const airplane = await Airplane.findAll({
-        where: {
-          id: airplaneId
-        }
-      });
+      const airplane = await Airplane.findByPk(airplaneId)
       return airplane; 
-     
     } 
     catch (error) {
       console.log("something went worng in airplane repo: getAirplaneById");
