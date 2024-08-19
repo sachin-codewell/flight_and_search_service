@@ -25,6 +25,18 @@ class FlightService {
             throw error; 
         }
     }
+
+    async getFlights(filterData) {
+        try {
+            const flights = await this.flightRepository.getFlights(filterData);
+            return flights;
+        } 
+        catch (error) {
+            console.log("something went wrong in flight servie: createFlight ");
+            throw error; 
+        }
+    }
+
 }
 
 module.exports = FlightService;

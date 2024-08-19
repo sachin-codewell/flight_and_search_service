@@ -24,6 +24,29 @@ async function createFlight(req,res) {
     }
 }
 
+async function getFlights(req,res) {
+    try { 
+       let filterData = req.query;
+       const result = await flightService.getFlights(filterData);
+       return res.status(200).json({
+        success: true,
+        data: result,
+        error: {},
+        message: "Flight fetched successfully"
+       }) 
+    } 
+    catch (error) {
+        console.log('Something went wrong in flight controller: getFlights');
+        return res.status(404).json({
+            success: false,
+            data: {},
+            error: error,
+            message: "something went wrong while fetching flights"
+        });
+    }
+}
+
 module.exports = {
-    createFlight
+    createFlight,
+    getFlights
 };
