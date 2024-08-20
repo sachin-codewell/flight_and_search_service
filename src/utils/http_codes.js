@@ -13,3 +13,9 @@ const successfulResponses = Object.freeze({
 serverErrorResponses = Object.freeze({
     internalServerError: 500
 })
+
+module.exports = {
+    clientErrorsResponse,
+    successfulResponses,
+    serverErrorResponses
+}
