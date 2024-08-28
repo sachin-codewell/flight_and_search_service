@@ -5,7 +5,7 @@ const cityRoutes = require('./city_routes');
 const airportRoutes = require('./airport_routes');
 const flightRoutes = require('./flight_routes')
 
-const router = new express.Router();
+const router = express.Router();
 router.use('/airplanes', airplaneRoutes);
 router.use('/cities', cityRoutes);
 router.use('/airports', airportRoutes);

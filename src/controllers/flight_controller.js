@@ -46,7 +46,30 @@ async function getFlights(req,res) {
     }
 }
 
+async function getFlight(req,res) {
+    try { 
+        console.log(req.params.id);
+       const result = await flightService.getFlight(req.params.id);
+       return res.status(200).json({
+        success: true,
+        data: result,
+        error: {},
+        message: "Flight fetched successfully"
+       }) 
+    } 
+    catch (error) {
+        console.log('Something went wrong in flight controller: getFlight');
+        return res.status(404).json({
+            success: false,
+            data: {},
+            error: error,
+            message: "something went wrong while fetching flight"
+        });
+    }
+}
+
 module.exports = {
     createFlight,
-    getFlights
+    getFlights,
+    getFlight
 };
