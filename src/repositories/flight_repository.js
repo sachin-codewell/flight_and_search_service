@@ -60,6 +60,26 @@ class FlightRepository {
             throw error
         }
     }
-}
+
+    async updateSeatsInSpecificFlight(flightId,numberOfSeats,dec=true) {
+        try {
+            let flight = await Flight.findByPk(flightId);
+            if(dec){
+                await flight.decrement('totalSeat', {by: numberOfSeats});
+            }
+            else{
+                await flight.increment('totalSeat', {by: numberOfSeats});
+            }
+            flight = await flight.save(A);
+            return flight;
+        } 
+        catch (error) {
+            console.log("something went worng in flight repo: getFlights",error);
+            throw error
+        }
+    }
+
+
+ }
 
 module.exports = FlightRepository;

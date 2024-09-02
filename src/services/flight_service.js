@@ -48,6 +48,17 @@ class FlightService {
         }
     }
 
+    async updateSeatsInSpecificFlight(flightId,numberOfSeats) {
+        try {
+            const flight = await this.flightRepository.updateSeatsInSpecificFlight(flightId,numberOfSeats);
+            return flight;
+        } 
+        catch (error) {
+            console.log("something went worng in flight service: updateSeatsInSpecificFlight");
+            throw error
+        }
+    }
+
 }
 
 module.exports = FlightService;

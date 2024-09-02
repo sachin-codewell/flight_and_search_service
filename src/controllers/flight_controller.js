@@ -48,7 +48,6 @@ async function getFlights(req,res) {
 
 async function getFlight(req,res) {
     try { 
-        console.log(req.params.id);
        const result = await flightService.getFlight(req.params.id);
        return res.status(200).json({
         success: true,
@@ -68,8 +67,32 @@ async function getFlight(req,res) {
     }
 }
 
+async function updateSeatsInSpecificFlight(req,res) {
+    try { 
+       const flightId = req.params.id;
+       const numberOfSeats = req.body.seats;
+       const result = await flightService.updateSeatsInSpecificFlight(flightId,numberOfSeats);
+       return res.status(200).json({
+        success: true,
+        data: result,
+        error: {},
+        message: "Flight seats updated successfully"
+       }) 
+    } 
+    catch (error) {
+        console.log('Something went wrong in flight controller: updateSeatsInSpecificFlight');
+        return res.status(404).json({
+            success: false,
+            data: {},
+            error: error,
+            message: "something went wrong while updating seats in flight"
+        });
+    }
+}
+
 module.exports = {
     createFlight,
     getFlights,
-    getFlight
+    getFlight,
+    updateSeatsInSpecificFlight
 };
